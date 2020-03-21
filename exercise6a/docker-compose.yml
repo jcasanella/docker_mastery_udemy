@@ -1,0 +1,33 @@
+version: "2.4"
+
+services:
+    drupal:
+        image: drupal:8.8
+        ports:
+            - "8081:80"
+        container_name: drupal
+        volumes:
+            - drupal_modules:/var/www/html/modules
+            - drupal_profiles:/var/www/html/profiles
+            - drupal_themes:/var/www/html/themes
+            - drupal_sites:/var/www/html/sites
+        depends_on: 
+            - postgres
+
+    postgres:
+        image: postgres:12.2
+        container_name: postgres
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_PASSWORD=mysecretpassword
+            - PGDATA=/var/lib/postgresql/data/pgdata
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    drupal_modules: 
+    drupal_profiles: 
+    drupal_themes: 
+    drupal_sites: 
+    postgres_data: 
