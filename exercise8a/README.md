@@ -81,3 +81,13 @@ docker service ps worker
 
 docker service logs worker
 ```
+
+To drop the different services:
+
+```
+docker service remove result
+docker service remove vote
+docker service remove redis
+docker service remove db
+docker service remove worker
+```
